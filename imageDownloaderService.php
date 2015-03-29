@@ -11,7 +11,8 @@
 	
 	require_once 'imageResizer.php';
 
-	$url = "http://cdn5.123picbox.com/";  
+	$url = "http://cdn5.123picbox.com/";
+	// $url = "http://badrullami.github.io/";  
 
 	$query = mysql_query("select * from images where is_downloaded=0 limit 1");
 	
@@ -24,26 +25,26 @@
 
 		// original images
 		$file_original = $row['image_id'].'-'.$title."-o.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-		$path_original = $url."assets/img/original/04/".$file_original;
+		$path_original = "assets/img/original/05/".$file_original;
 		
 		$path_large = "";
 		$path_large2048 = "";
 
 		// medium800
 		$file_medium800 = $row['image_id'].'-'.$title."-vm.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-		$path_medium800 = $url."assets/img/medium800/04/".$file_medium800;
+		$path_medium800 = "assets/img/medium800/05/".$file_medium800;
 
 		// medium
 		$file_medium = $row['image_id'].'-'.$title."-m.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-		$path_medium = $url."assets/img/medium/04/".$file_medium;
+		$path_medium = "assets/img/medium/05/".$file_medium;
 
 		// small
 		$file_small = $row['image_id'].'-'.$title."-s.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-		$path_small = $url."assets/img/small/04/".$file_small;
+		$path_small = "assets/img/small/05/".$file_small;
 
 		// thumbnail
 		$file_thumbnail = $row['image_id'].'-'.$title."-t.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-		$path_thumbnail = $url."assets/img/thumbnail/04/".$file_thumbnail;
+		$path_thumbnail = "assets/img/thumbnail/05/".$file_thumbnail;
 
 		try {
 			
@@ -75,7 +76,7 @@
 
 					// large
 					$file_large = $row['image_id'].'-'.$title."-l.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-					$path_large = $url."assets/img/large/04/".$file_large;
+					$path_large = "assets/img/large/05/".$file_large;
 
 					/* resize large 1024 */
 					$width_large = 1024;
@@ -86,7 +87,7 @@
 				if($row['Original_Width'] > 2048) : 
 					// large2048
 					$file_large2048 = $row['image_id'].'-'.$title."-vl.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-					$path_large2048 = $url."assets/img/large2048/04/".$file_large2048;
+					$path_large2048 = "assets/img/large2048/05/".$file_large2048;
 
 					/* resize large 2048 */
 					$width_large2048 = 2048;
@@ -98,26 +99,26 @@
 				// smart_resize_image(null , file_get_contents($row['Original']), $row['Original_Width'] , $row['Original_Height'], false , $path_original, false , false ,100);
 
 				mysql_query("update images set 
-					Thumbnail ='".$path_thumbnail."', 
+					Thumbnail ='".$url.$path_thumbnail."', 
 					Thumbnail_Width =".$width_thumbnail.", 
 					Thumbnail_Height =".$height_thumbnail.",
-					Small ='".$path_small."', 
+					Small ='".$url.$path_small."', 
 					Small_Width =".$width_small.", 
 					Small_Height =".$height_small.",
-					Medium ='".$path_medium."', 
+					Medium ='".$url.$path_medium."', 
 					Medium_Width =".$width_medium.", 
 					Medium_Height =".$height_medium.",
-					Medium_800 ='".$path_medium800."', 
+					Medium_800 ='".$url.$path_medium800."', 
 					Medium_800_Width =".$width_medium800.", 
 					Medium_800_Height =".$height_medium800.",
-					Large ='".$path_large."', 
+					Large ='".$url.$path_large."', 
 					Large_Width =".$width_large.", 
 					Large_Height =".$height_large.",
-					Large_2048 ='".$path_large2048."', 
+					Large_2048 ='".$url.$path_large2048."', 
 					Large_2048_Width =".$width_large2048.", 
 					Large_2048_Height =".$height_large2048.",
-					web_thumbnail ='".$path_small."',
-					web_single ='".$path_medium800."',
+					web_thumbnail ='".$url.$path_small."',
+					web_single ='".$url.$path_medium800."',
 					is_downloaded =1     
 					where id=".$row['id']);
 					echo "row id". $row['id'];
@@ -147,7 +148,7 @@
 				if($row['Original_Height'] > 1024) : 
 					// large
 					$file_large = $row['image_id'].'-'.$title."-l.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-					$path_large = $url."assets/img/large/04/".$file_large;
+					$path_large = "assets/img/large/05/".$file_large;
 
 					/* resize large 1024 */
 					$height_large = 1024;
@@ -158,7 +159,7 @@
 				if($row['Original_Height'] > 2048) : 
 					// large2048
 					$file_large2048 = $row['image_id'].'-'.$title."-vl.".pathinfo($row['Original'], PATHINFO_EXTENSION);
-					$path_large2048 = $url."assets/img/large2048/04/".$file_large2048;
+					$path_large2048 = "assets/img/large2048/05/".$file_large2048;
 
 					/* resize large 2048 */
 					$height_large2048 = 2048;
@@ -170,26 +171,26 @@
 				// smart_resize_image(null , file_get_contents($row['Original']), $row['Original_Width'], $row['Original_Height'], false , $path_original, false , false ,100);
 
 				mysql_query("update images set 
-					Thumbnail ='".$path_thumbnail."', 
+					Thumbnail ='".$url.$path_thumbnail."', 
 					Thumbnail_Width =".$width_thumbnail.", 
 					Thumbnail_Height =".$height_thumbnail.",
-					Small ='".$path_small."', 
+					Small ='".$url.$path_small."', 
 					Small_Width =".$width_small.", 
 					Small_Height =".$height_small.",
-					Medium ='".$path_medium."', 
+					Medium ='".$url.$path_medium."', 
 					Medium_Width =".$width_medium.", 
 					Medium_Height =".$height_medium.",
-					Medium_800 ='".$path_medium800."', 
+					Medium_800 ='".$url.$path_medium800."', 
 					Medium_800_Width =".$width_medium800.", 
 					Medium_800_Height =".$height_medium800.",
-					Large ='".$path_large."', 
+					Large ='".$url.$path_large."', 
 					Large_Width =".$width_large.", 
 					Large_Height =".$height_large.",
-					Large_2048 ='".$path_large2048."', 
+					Large_2048 ='".$url.$path_large2048."', 
 					Large_2048_Width =".$width_large2048.", 
 					Large_2048_Height =".$height_large2048.",
-					web_thumbnail ='".$path_small."',
-					web_single ='".$path_medium800."',
+					web_thumbnail ='".$url.$path_small."',
+					web_single ='".$url.$path_medium800."',
 					is_downloaded =1     
 					where id=".$row['id']);
 			endif;
